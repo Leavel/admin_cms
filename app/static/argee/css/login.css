@@ -1,0 +1,87 @@
+.login_back{
+    width: 100%;
+    height: 100%;
+    background: url(../argimg/login_back.jpg) no-repeat;
+    max-width: 100%;
+    height: auto;
+}
+.back_s{
+    width: 1236px;
+    height: 586px;
+    background: url(../argimg/back_s.png) no-repeat;
+    z-index: 1;
+    margin: 0 auto;
+}
+.ct{
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top:64px;
+}
+.ct_left{
+    float: left;
+    width: 50%;
+}
+.ct_left img{
+    width: 511px;
+    height: 352px;
+}
+.ct_left p{
+    width: 100%;
+    text-align: center;
+    margin-top: 70px;
+}
+.ct_left p img{
+    width: 13px;
+    height: 12px;
+    margin-right: 10px;
+}
+.ct_right{
+    float: right;
+}
+.title{
+    margin-bottom: 50px;
+}
+.title h1{
+    color:#1b8bf5;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.title p{
+    color: #999999;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-block-start: 6px;
+}
+.compte{
+    width:100%;
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+.name{
+    width: 360px;
+    height: 40px;
+    border-bottom: 1px solid #dedede;
+    border: none;
+}
+.username img{
+    position: absolute;
+    left:339px;
+    bottom:14px;
+}
+.username{
+    width: 360px;
+
+}
+.button{
+    width: 360px;
+    height: 46px;
+    background: #1b8bf5;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 50px;
+    display: block;
+}
