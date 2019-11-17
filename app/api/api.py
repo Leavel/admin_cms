@@ -46,4 +46,6 @@ def aes_decryption(mysql_password,password):
     mydecrrypt = AES.new(key,AES.MODE_CFB,mysql_password[:16])
     decrypttext = mydecrrypt.decrypt(mysql_password[16:]).decode()
     if str(decrypttext) == password:
-        return decrypttext
+        return True
+    else:
+        return False

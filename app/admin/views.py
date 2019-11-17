@@ -14,9 +14,9 @@ def index():
         password = request.args.get("password","")
         user = User.query.filter_by(user=username).first_or_404()
         if user:
-            if aes_decryption(user.password,password):
+            if aes_decryption(user.password,password) == True:
                 session['admin'] = username
-                return render_template("admin/index.html")
+                return redirect(render_template("admin/index.html"))
             else:
                 return "<script>alert('您输入的账号或密码错误')</script>"
         else:
