@@ -1,4 +1,5 @@
 # _*_ coding:utf-8 _*_
+import json
 from flask import render_template,session,redirect,request
 from app.admin import admin
 from app.models import *
@@ -10,17 +11,32 @@ def index():
     if "admin" in session:
         return render_template("admin/index.html")
     else:
-        username = request.args.get("username","")
-        password = request.args.get("password","")
-        user = User.query.filter_by(user=username).first_or_404()
-        if user:
-            if aes_decryption(user.password,password) == True:
-                session['admin'] = username
-                return redirect(render_template("admin/index.html"))
-            else:
-                return "<script>alert('您输入的账号或密码错误')</script>"
-        else:
-            return "<script>alert('您输入的账号或密码错误')</script>"
         return render_template("admin/login.html")
+
+
+@admin.route("/server-login",methods=["GET"])
+def login():
+    username = request.args.get("username", "")
+    password = request.args.get("password", "")
+    print({"username":username,"password":password})
+    user = User.query.filter_by(user=username).first_or_404()
+    if user:
+        if aes_decryption(user.password, password) == True:
+            session['admin'] = username
+            dic = {
+                "status": 1,
+                "text": "uname already exist"
+            }
+        else:
+            dic = {
+                "status": 0,
+                "text": "uname does not exist"
+            }
+    else:
+        dic = {
+            "status": 0,
+            "text": "uname does not exist"
+        }
+    return json.dumps(dic)
 
 
