@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
 import json
-from flask import render_template,session,redirect,request
+from flask import render_template, session, redirect, request, url_for
 from app.admin import admin
 from app.models import *
 from app.api.api import admin_login,aes_decryption,aes_encryption
@@ -14,10 +14,10 @@ def index():
         return render_template("admin/login.html")
 
 
-@admin.route("/server-login",methods=["GET"])
+@admin.route("/server-login",methods=["POST"])
 def login():
-    username = request.args.get("username", "")
-    password = request.args.get("password", "")
+    username = request.form.get("username", "")
+    password = request.form.get("password", "")
     print({"username":username,"password":password})
     user = User.query.filter_by(user=username).first_or_404()
     if user:
@@ -25,12 +25,12 @@ def login():
             session['admin'] = username
             dic = {
                 "status": 1,
-                "text": "uname already exist"
+                "text": "True"
             }
         else:
             dic = {
                 "status": 0,
-                "text": "uname does not exist"
+                "text": "False"
             }
     else:
         dic = {
@@ -39,4 +39,10 @@ def login():
         }
     return json.dumps(dic)
 
+
+@admin.route('/server-logout',methods=["GET"])
+def logout():
+    print("text")
+    session.pop("admin",None)
+    return redirect("/admin")
 
