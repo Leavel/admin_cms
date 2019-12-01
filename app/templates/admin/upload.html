@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../static/argee/js/jquery-3.4.1.min.js"></script>
+    <script>
+        var formData = new FormData();
+        $(document).ready(function(){
+            $("#upload").click(function(){
+            formData.append('file', $('#file')[0].files[0]);
+                $.ajax({
+                    url: '/upload/',
+                    type: 'POST',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false
+                }).done(function(res) {
+                    console.log('success')
+                }).fail(function(res) {
+                    console.log('fail')
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="uploadForm">
+    <input id="file" type="file"/>
+    <button id="upload" type="button">upload</button>
+
+    <div class="ps-image" style="width:300px;height:300px;border:0px solid red; background:url('../../static/argee/argimg/ps.png')">
+    <input type="file" id="file" style="filter:alpha(opacity=0);opacity:0;width:100%;height:100%;"/>
+</div>
+</div>
+</body>
+</html>
